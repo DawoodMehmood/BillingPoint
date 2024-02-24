@@ -38,6 +38,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true, // Adjust based on your requirements
       },
+      companyName: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
       role: {
         type: Sequelize.STRING,
         allowNull: false,

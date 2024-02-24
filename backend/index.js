@@ -8,7 +8,6 @@ const cors = require("cors");
 const authRoutes = require("./src/routes/authRoutes");
 const userRoutes = require("./src/routes/userRoutes");
 const adminRoutes = require("./src/routes/adminRoutes");
-const profileRoutes = require("./src/routes/profileRoutes");
 
 const PORT = process.env.PORT || 8000;
 
@@ -38,7 +37,6 @@ app.use(express.json());
 app.use("/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/admin", adminRoutes);
-app.use("/auth/profile", profileRoutes);
 // app.post("/auth/token/validate", middleware, (req, res) => {
 //   // If the middleware passes, the token is valid
 //   res.status(200).json({ valid: true });

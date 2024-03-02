@@ -7,7 +7,6 @@ const authenticateUser = async (req, res, next) => {
   try {
     const authHeader = req.headers.authorization;
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
-      console.log("Authentication token required");
       return res.status(401).json({ message: "Authentication token required" });
     }
 

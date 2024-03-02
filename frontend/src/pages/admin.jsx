@@ -69,7 +69,6 @@ const Admin = () => {
       if (response.ok) {
         const jsonResponse = await response.json();
         setUsers(jsonResponse);
-        console.log("Data fetched successfully", jsonResponse);
       } else {
         console.error("Response not ok");
       }

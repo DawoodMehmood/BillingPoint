@@ -29,11 +29,9 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
   const login = (token) => {
-    console.log("login");
     sessionStorage.setItem("token", token);
     setIsLoggedIn(true);
     const decoded = jwtDecode(token);
-    console.log("decoded", decoded);
     setIsLoggedIn(true);
     if (decoded.role === "admin") {
       setUser({ firstName: decoded.firstName, role: decoded.role });
@@ -52,7 +50,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = async () => {
-    console.log("logout");
     sessionStorage.removeItem("token");
     setIsLoggedIn(false);
     setUser(null);

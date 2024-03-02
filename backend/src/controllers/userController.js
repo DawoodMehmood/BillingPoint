@@ -7,7 +7,6 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 exports.getUserData = async (req, res) => {
-  console.log("Fetching user data");
   try {
     const user = req.user;
     let pepcoData = null,
@@ -55,7 +54,6 @@ exports.getUserData = async (req, res) => {
 
 exports.updateAccounts = async (req, res) => {
   const userId = req.params.userid;
-  console.log(userId);
   let { pepcoAccountNo, washgasAccountNo, wsscAccountNo } = req.body || {};
   pepcoAccountNo = pepcoAccountNo || "0";
   washgasAccountNo = washgasAccountNo || "0";
@@ -65,10 +63,8 @@ exports.updateAccounts = async (req, res) => {
     ...(washgasAccountNo && { washgasAccountNo }),
     ...(wsscAccountNo && { wsscAccountNo }),
   };
-  console.log("updated data", updateData);
   try {
     const user = await User.findByPk(userId);
-    console.log("user", user);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
@@ -85,11 +81,9 @@ exports.updateAccounts = async (req, res) => {
       washgasAccountNo: washgasAccountNo || "",
       wsscAccountNo: wsscAccountNo || "",
     };
-    console.log("updated data ", updatedUserData);
     const newToken = jwt.sign(updatedUserData, process.env.JWT_SECRET_KEY, {
       expiresIn: "1h",
     });
-    console.log("token ", newToken);
 
     res
       .status(200)

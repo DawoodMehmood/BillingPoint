@@ -15,7 +15,6 @@ const UpdateAccounts = ({ onClose, onUpdate }) => {
 
   useEffect(() => {
     if (user) {
-      console.log("in effect ", user);
       setFormData({
         pepcoAccountNo: user.pepcoAccountNo || "",
         washgasAccountNo: user.washgasAccountNo || "",
@@ -32,8 +31,6 @@ const UpdateAccounts = ({ onClose, onUpdate }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    console.log("user data", user);
-    console.log("form data", formData);
 
     try {
       const response = await fetch(
@@ -47,7 +44,6 @@ const UpdateAccounts = ({ onClose, onUpdate }) => {
           body: JSON.stringify(formData),
         }
       );
-      console.log("response", response);
       if (response.ok) {
         const jsonResponse = await response.json();
         sessionStorage.setItem("token", jsonResponse.token);

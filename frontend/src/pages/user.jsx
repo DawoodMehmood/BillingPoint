@@ -28,7 +28,7 @@ const User = () => {
           onClick={() => handleUpdateClick()}
           className={`bg-magenta text-white font-bold px-5 py-2 rounded`}
         >
-          Update Accounts&nbsp;
+          Add/Update Vendor&nbsp;
           <FontAwesomeIcon icon={faPen} />
         </button>
       </div>

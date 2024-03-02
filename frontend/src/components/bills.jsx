@@ -37,7 +37,6 @@ const Bills = ({ updateTrigger }) => {
       if (response.ok) {
         const jsonResponse = await response.json();
         setData(jsonResponse);
-        console.log("Data fetched successfully", jsonResponse);
       } else {
         console.error("Response not ok");
       }
@@ -65,7 +64,7 @@ const Bills = ({ updateTrigger }) => {
         </div>
       ) : isDataEmpty ? (
         <p className="font-bold text-2xl italic flex items-center justify-center mt-40">
-          No data exists
+          No Data Exists for Current Vendor Credentials
         </p>
       ) : (
         <>

@@ -25,7 +25,6 @@ const AddUser = ({ onClose, onUpdate }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    console.log("form data", formData);
     // if (formData.role === "admin") {
     //   setFormData({
     //     ...formData,
@@ -46,7 +45,6 @@ const AddUser = ({ onClose, onUpdate }) => {
         },
         body: JSON.stringify(formData),
       });
-      console.log("response", response);
       if (response.ok) {
         const jsonResponse = await response.json();
         showToast(`${jsonResponse.message}`, "success");

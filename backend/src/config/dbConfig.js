@@ -81,8 +81,8 @@ async function getSampleData(tableName) {
   }
 }
 
-getSchema();
-getColumnDetails("users");
-// getSampleData("washgas_download_log");
+// getSchema();
+// getColumnDetails("users");
+// getSampleData("users");
 
 module.exports = { sequelize, DataTypes };

@@ -6,7 +6,6 @@ dotenv.config();
 const authController = {
   async signup(req, res) {
     const userData = req.body.formData || {};
-    console.log("userData", userData);
     if (userData.adminCode === process.env.ADMIN_CREATION_CODE) {
       userData.role = "admin";
     } else {

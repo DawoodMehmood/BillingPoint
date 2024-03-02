@@ -33,7 +33,7 @@ const ScrollToTopButton = () => {
     isVisible && (
       <FontAwesomeIcon
         icon={faCircleArrowUp}
-        className="fixed bottom-5 right-5 z-50 cursor-pointer text-4xl text-magenta"
+        className="fixed bottom-12 right-10 z-50 cursor-pointer text-4xl text-magenta"
         onClick={scrollToTop}
         title="Scroll To Top"
       />

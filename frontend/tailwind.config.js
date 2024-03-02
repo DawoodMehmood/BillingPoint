@@ -7,6 +7,7 @@ module.exports = {
         "celestial-blue": "#058ED9",
         seagreen: "#4BC6B9",
         magenta: "#B57BA6",
+        beige: "#ffe4c4",
       },
     },
   },

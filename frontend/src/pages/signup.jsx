@@ -8,7 +8,7 @@ import { faArrowRightToBracket } from "@fortawesome/free-solid-svg-icons";
 function SignUp({ onLoginClick, onClose }) {
   const { login } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
-
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -20,25 +20,36 @@ function SignUp({ onLoginClick, onClose }) {
     wsscAccountNo: "",
     companyName: "",
   });
-  const [showAdminCode, setShowAdminCode] = useState(false);
+  // const [showAdminCode, setShowAdminCode] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    if (showAdminCode) {
-      setFormData({
-        ...formData,
-        pepcoAccountNo: "",
-        washgasAccountNo: "",
-        wsscAccountNo: "",
-        companyName: "",
-      });
+    // if (showAdminCode) {
+    //   setFormData({
+    //     ...formData,
+    //     pepcoAccountNo: "",
+    //     washgasAccountNo: "",
+    //     wsscAccountNo: "",
+    //     companyName: "",
+    //   });
+    // }
+
+    if (formData.password !== confirmPassword) {
+      showToast("Password & Confirm Password do not match", "error");
+      setIsLoading(false);
+      return;
     }
+
     try {
       const response = await fetch(`${BACKEND_URL}/auth/signup`, {
         method: "POST",
@@ -99,6 +110,19 @@ function SignUp({ onLoginClick, onClose }) {
           />
         </div>
         <div className="form-group flex justify-between items-center">
+          <label htmlFor="companyName" className="flex-1 text-left mr-4">
+            Company name
+          </label>
+          <input
+            type="text"
+            name="companyName"
+            value={formData.companyName}
+            onChange={handleChange}
+            placeholder="(optional)"
+            className="flex-2 px-2 border-2 rounded outline-none font-normal"
+          />
+        </div>
+        <div className="form-group flex justify-between items-center">
           <label htmlFor="email" className="flex-1 text-left mr-4">
             Email
           </label>
@@ -124,7 +148,20 @@ function SignUp({ onLoginClick, onClose }) {
             className="flex-2 px-2 border-2 rounded outline-none font-normal"
           />
         </div>
-        {showAdminCode ? (
+        <div className="form-group flex justify-between items-center">
+          <label htmlFor="confirmPassword" className="flex-1 text-left mr-4">
+            Confirm Password
+          </label>
+          <input
+            type="password"
+            name="confirmPassword"
+            value={confirmPassword}
+            onChange={handleConfirmPasswordChange}
+            required
+            className="flex-2 px-2 border-2 rounded outline-none font-normal"
+          />
+        </div>
+        {/* {showAdminCode ? (
           <div className="form-group flex justify-between items-center">
             <label htmlFor="adminCode" className="flex-1 text-left mr-4">
               Admin Code
@@ -139,8 +176,8 @@ function SignUp({ onLoginClick, onClose }) {
             />
           </div>
         ) : (
-          <>
-            <div className="form-group flex justify-between items-center">
+          <> */}
+        {/* <div className="form-group flex justify-between items-center">
               <label htmlFor="companyName" className="flex-1 text-left mr-4">
                 Company name
               </label>
@@ -152,8 +189,8 @@ function SignUp({ onLoginClick, onClose }) {
                 placeholder="(optional)"
                 className="flex-2 px-2 border-2 rounded outline-none font-normal"
               />
-            </div>
-            {/* <div className="form-group flex justify-between items-center">
+            </div> */}
+        {/* <div className="form-group flex justify-between items-center">
               <label htmlFor="pepcoAccountNo" className="flex-1 text-left mr-4">Pepco Acc No.</label>
               <input
                 type="text"
@@ -164,7 +201,7 @@ function SignUp({ onLoginClick, onClose }) {
                 className="flex-2 px-2 border-2 rounded outline-none font-normal"
               />
             </div> */}
-            {/* <div className="form-group flex justify-between items-center">
+        {/* <div className="form-group flex justify-between items-center">
               <label htmlFor="washgasAccountNo" className="flex-1 text-left mr-4">Washgas Acc No.</label>
               <input
                 type="text"
@@ -175,7 +212,7 @@ function SignUp({ onLoginClick, onClose }) {
                 className="flex-2 px-2 border-2 rounded outline-none font-normal"
               />
             </div> */}
-            {/* <div className="form-group flex justify-between items-center">
+        {/* <div className="form-group flex justify-between items-center">
               <label htmlFor="wsscAccountNo" className="flex-1 text-left mr-4">WSSC Acc No.</label>
               <input
                 type="text"
@@ -186,8 +223,8 @@ function SignUp({ onLoginClick, onClose }) {
                 className="flex-2 px-2 border-2 rounded outline-none font-normal"
               />
             </div> */}
-          </>
-        )}
+        {/* </> */}
+        {/* )} */}
 
         <div className="text-center">
           <button
@@ -211,7 +248,7 @@ function SignUp({ onLoginClick, onClose }) {
             <FontAwesomeIcon icon={faArrowRightToBracket} />
           </button>
         </div>
-        <div className="text-center">
+        {/* <div className="text-center">
           <button
             type="button"
             onClick={() => setShowAdminCode(!showAdminCode)}
@@ -219,7 +256,7 @@ function SignUp({ onLoginClick, onClose }) {
           >
             {showAdminCode ? "Signup as a user" : "Signup as an admin"}
           </button>
-        </div>
+        </div> */}
       </div>
     </form>
   );

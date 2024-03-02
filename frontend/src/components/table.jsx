@@ -1,4 +1,7 @@
+import { useAuth } from "../context/authContext";
+
 function Table({ title, data, columns, renderButton }) {
+  const { user } = useAuth();
   return (
     <div className=" flex flex-col items-center justify-center mt-2 mb-10">
       <h2 className="my-5 font-bold text-2xl italic">{title}</h2>
@@ -23,7 +26,7 @@ function Table({ title, data, columns, renderButton }) {
                   key={column.key}
                   className="px-4 py-4 whitespace-nowrap text-sm text-gray-500"
                 >
-                  {item[column.key]}
+                  {column.name === "Client ID" ? user.id : item[column.key]}
                 </td>
               ))}
               {renderButton && (

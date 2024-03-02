@@ -6,6 +6,7 @@ import Admin from "./pages/admin";
 import Navbar from "./components/navbar";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuth } from "./context/authContext";
+import Footer from "./components/footer";
 
 function App() {
   const { isLoggedIn, user } = useAuth();
@@ -37,6 +38,7 @@ function App() {
         />
         {!isLoggedIn && <Route path="*" element={<Navigate to="/home" />} />}
       </Routes>
+      <Footer />
     </>
   );
 }
